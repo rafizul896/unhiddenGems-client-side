@@ -19,7 +19,7 @@ const Navbar = () => {
         logOut()
     }
     return (
-        <div className='navbar shadow-2xl px-0'>
+        <div className='navbar px-0'>
             <div className='flex-1'>
                 <div className="dropdow">
                     <div onClick={() => setOpen(!open)} className="lg:hidden text-2xl md:text-3xl">

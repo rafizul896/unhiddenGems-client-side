@@ -1,4 +1,6 @@
 import { Helmet } from "react-helmet";
+import TourismGuideSection from "./TourismGuideSection";
+import Banner from "./Banner/Banner";
 
 const Home = () => {
     return (
@@ -6,7 +8,12 @@ const Home = () => {
             <Helmet>
                 <title>Home || Tourist Guide</title>
             </Helmet>
-            Home
+            {/* Home */}
+            <Banner/>
+            <div>
+                <h1 className="text-2xl text-center">Tourist Guide</h1>
+                <TourismGuideSection />
+            </div>
         </div>
     );
 };
