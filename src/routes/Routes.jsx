@@ -4,6 +4,9 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
+import DashBoard from "../Root/DashBoard";
+import PackageDetailsPage from "../pages/PackageDetails/PackageDetailsPage";
+import TourGuideProfile from "../pages/TourGuide/TourGuideProfile";
 
 export const router = createBrowserRouter([
     {
@@ -16,13 +19,19 @@ export const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: '/login',
-                element: <Login/>
+                path: '/packageDetails/:id',
+                element: <PackageDetailsPage />
             },
             {
-                path: '/register',
-                element: <Register/>
+                path: '/tourGuideProfile/:id',
+                element: <TourGuideProfile />
             }
         ]
+    },
+    { path: '/login', element: <Login /> },
+    { path: '/register', element: <Register /> },
+    {
+        path: '/dashboard',
+        element: <DashBoard />
     }
 ])

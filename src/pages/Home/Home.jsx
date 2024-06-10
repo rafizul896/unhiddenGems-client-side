@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import TourismGuideSection from "./TourismGuideSection";
 import Banner from "./Banner/Banner";
+import SectionTitle from "../../components/Shared/SectionTitle";
 
 const Home = () => {
     return (
@@ -11,7 +12,7 @@ const Home = () => {
             {/* Home */}
             <Banner/>
             <div>
-                <h1 className="text-2xl text-center">Tourist Guide</h1>
+                <SectionTitle heading={'Tourist Guide'}/>
                 <TourismGuideSection />
             </div>
         </div>

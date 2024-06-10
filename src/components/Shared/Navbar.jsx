@@ -38,8 +38,10 @@ const Navbar = () => {
             </div>
             <div className='flex-none flex items-center gap-1 md:gap-0'>
                 <ul className='menu menu-horizontal items-center px-2'>
-                    <div className="hidden lg:flex gap-5 pr-4">
-                        {links}
+                    <div className="flex gap-5">
+                        <div className="hidden lg:flex gap-5">
+                            {links}
+                        </div>
                         {
                             !user && (
                                 <Link to='/login'>Login</Link>
@@ -55,7 +57,7 @@ const Navbar = () => {
                 {
                     user &&
 
-                    <div className='dropdown dropdown-end z-50'>
+                    <div className='dropdown dropdown-end z-50 ml-2'>
                         <div
                             data-tip={`${user.displayName}`}
                             tabIndex={0}
@@ -75,16 +77,10 @@ const Navbar = () => {
                             className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
                         >
                             <li>
-                                <Link to='/addJobs' className='justify-between'>Add A Job</Link>
+                                <Link to='/dashboard' className='justify-between'>Dashboard</Link>
                             </li>
                             <li>
-                                <Link to='/myPostedJobs'>My Jobs</Link>
-                            </li>
-                            <li>
-                                <Link to="/myApplyedJob">My Applied Jobs</Link>
-                            </li>
-                            <li>
-                                <Link to="/myProfile">My Profile</Link>
+                                <Link to='/offerAnnouncements'>Offer Announcements</Link>
                             </li>
                             <li className='mt-2'>
                                 <button onClick={handleLogOut} className='bg-gray-200 block text-center'>Logout</button>
