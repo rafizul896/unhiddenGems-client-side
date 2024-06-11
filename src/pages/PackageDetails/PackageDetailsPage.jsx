@@ -70,7 +70,8 @@ const PackageDetailsPage = () => {
                             <div className="collapse-content">
                                 <p>{plan.description}</p>
                             </div>
-                        </div>)
+                        </div>
+                        )
                     }
                 </div>
             </div>
@@ -79,11 +80,11 @@ const PackageDetailsPage = () => {
             <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Tour Guides</h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
                     {tourGuides.map((guide) => (
                         <div key={guide.id} className="border rounded-lg overflow-hidden shadow-lg">
                             <img src={guide.profilePicture} alt={guide.name} className="w-full h-52 object-cover" />
-                            <div className="p-4 flex justify-between items-center">
+                            <div className="p-3 flex justify-between items-center">
                                 <h3 className="text-xl font-bold">{guide.name}</h3>
                                 <Link to={`/tourGuideProfile/${guide._id}`}>
                                     <button

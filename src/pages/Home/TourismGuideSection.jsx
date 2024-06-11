@@ -10,8 +10,6 @@ const TourismGuideSection = () => {
     const { tourGuides } = useTourGuides();
     const { packages } = usePackages();
 
-    console.log(packages)
-    console.log(tourGuides)
     return (
         <div className="container mx-auto">
             <Tabs>
@@ -37,7 +35,6 @@ const TourismGuideSection = () => {
                 {/* Our Packages */}
                 <TabPanel>
                     <div className="p-4">
-                        {/* <h2 className="text-xl font-bold mb-4">Our Packages</h2> */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {
                                 packages.map(item => <PackageCard key={item._id} item={item} />)
@@ -51,16 +48,21 @@ const TourismGuideSection = () => {
                     <div className="p-4">
                         <h2 className="text-xl font-bold mb-4">Meet Our Tour Guides</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {/* Tour Guide Card 1 */}
-                            <div className="border rounded-lg overflow-hidden shadow-lg">
-                                <img src="guide1.jpg" alt="Guide 1" className="w-full h-48 object-cover" />
-                                <div className="p-4">
-                                    <h3 className="text-lg font-bold">Guide Name 1</h3>
-                                    <p>Experience: 5 years</p>
-                                    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Details</button>
+                            {
+                                tourGuides.map(guide => <div key={guide._id} className="border rounded-lg overflow-hidden shadow-lg">
+                                    <img src={guide.profilePicture} alt="Guide 1" className="w-full h-48 object-cover" />
+                                    <div className="p-4 flex justify-between items-center">
+                                        <div>
+                                            <h3 className="text-lg font-bold">{guide.name}</h3>
+                                            <p>Experience: {guide.totalExperience}</p>
+                                        </div>
+                                        <Link to={`/tourGuideProfile/${guide._id}`}>
+                                            <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Details</button>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                            {/* Repeat similar cards for other tour guides */}
+                                )
+                            }
                         </div>
                     </div>
                 </TabPanel>
