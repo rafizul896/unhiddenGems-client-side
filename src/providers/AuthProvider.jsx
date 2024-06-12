@@ -11,13 +11,12 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth'
-import axios from 'axios'
-// import { axiosCommon } from '../hooks/useAxiosCommon'
 import { app } from '../firebase/firebase.config'
+import { axiosCommon } from '../hooks/useAxiosCommon'
 
-export const AuthContext = createContext(null)
-const auth = getAuth(app)
-const googleProvider = new GoogleAuthProvider()
+export const AuthContext = createContext(null);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
@@ -58,35 +57,34 @@ const AuthProvider = ({ children }) => {
     })
   }
 
-  // Get token from server
-  const getToken = async email => {
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/jwt`,
-      { email },
-      { withCredentials: true }
-    )
-    return data
-  }
-
   // save user
-//   const saveUser = async (user) => {
-//     const currentUser = {
-//       email: user?.email,
-//       name: user?.displayName,
-//       role: 'guest',
-//       status: 'Verified'
-//     }
-//     const { data } = await axiosCommon.put('/user', currentUser, { withCredentials: true })
-//     return data;
-//   }
+  const saveUser = async (user) => {
+    const currentUser = {
+      email: user?.email,
+      name: user?.displayName,
+      role: 'Tourist',
+      status: 'Verified'
+    }
+    const { data } = await axiosCommon.post('/user', currentUser)
+    return data;
+  }
 
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser)
+      setUser(currentUser);
+      const loggedUser = { email: currentUser?.email }
       if (currentUser) {
-        // getToken(currentUser.email)
-        // saveUser(currentUser)
+        axiosCommon.post('/jwt', loggedUser, { withCredentials: true })
+          .then(res => {
+            if (res.data.token) {
+              localStorage.setItem('token', res.data.token);
+            }
+          })
+        saveUser(currentUser)
+      }
+      else {
+        localStorage.removeItem('token')
       }
       setLoading(false)
     })

@@ -2,18 +2,21 @@ import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useAuth from '../../hooks/useAuth';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { axiosCommon } from '../../hooks/useAxiosCommon';
 import { Link, useParams } from 'react-router-dom';
 import Loader from '../../components/Shared/Loader';
 import { SlLocationPin } from 'react-icons/sl';
 import useTourGuides from '../../hooks/useTourGuides';
+import { toast } from 'react-toastify';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const PackageDetailsPage = () => {
     const { tourGuides } = useTourGuides();
     const { id } = useParams();
     const { user } = useAuth();
-    const [startDate, setStartDate] = useState(new Date());
+    const axiosSecure = useAxiosSecure();
+    const [date, setDate] = useState(new Date());
     const [selectedGuide, setSelectedGuide] = useState('');
 
     const { data: packageDetails, isLoading } = useQuery({
@@ -23,15 +26,56 @@ const PackageDetailsPage = () => {
             return data;
         }
     })
+    // post booking
+    const { mutateAsync } = useMutation({
+        mutationFn: async (book) => {
+            const { data } = await axiosSecure.post('/bookings', book);
+            return data;
+        },
+        onSuccess: (e) => {
+            if (e.message === 'exist') {
+                toast.warning('You have to already booking the package')
+            }
+            else {
+                toast.success('Booking Success')
+            }
+        },
+        onError: e => {
+            console.log(e.message);
+            toast.error(e.message)
+        }
+    })
 
-    console.log(packageDetails)
+    const handleBooking = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const packageName = form.packageName.value;
+        const touristName = form.touristName.value;
+        const touristEmail = form.touristEmail.value;
+        const touristImage = form.touristImage.value;
+        const tourGuideName = form.tourGuideName.value
+        const price = form.price.value;
 
-    const handleBooking = () => {
+        const bookingInfo = {
+            packageName,
+            tourGuideName,
+            touristInfo: {
+                touristName,
+                touristEmail,
+                touristImage
+            },
+            price,
+            date,
+            status: "In Review",
+            packageId: id
+        }
+
         if (!user) {
-            alert("You need to be logged in to book a package.");
+            toast.error("You need to be logged in to book a package.");
             return;
         }
-        alert("Confirm your Booking");
+
+        await mutateAsync(bookingInfo)
     };
 
     if (isLoading) return <Loader />
@@ -59,7 +103,7 @@ const PackageDetailsPage = () => {
                 <h2 className="text-2xl font-bold mb-4">Tour Plan</h2>
                 <div>
                     {
-                        packageDetails?.tourPlan.map((plan, indx) => <div key={plan._id} className="collapse collapse-arrow bg-blue-50 mt-3">
+                        packageDetails?.tourPlan.map((plan, indx) => <div key={indx} className="collapse collapse-arrow bg-blue-50 mt-3">
                             <input type="radio" name="my-accordion-2" />
                             <div className="collapse-title md:text-xl font-medium flex gap-4">
                                 <div className='text-sm md:text-lg flex items-center gap-1 bg-[#22e6b5] px-2 md:px-4 py-1 rounded-sm font-semibold'>
@@ -81,8 +125,8 @@ const PackageDetailsPage = () => {
                 <h2 className="text-2xl font-bold mb-4">Tour Guides</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
-                    {tourGuides.map((guide) => (
-                        <div key={guide.id} className="border rounded-lg overflow-hidden shadow-lg">
+                    {tourGuides.map((guide, indx) => (
+                        <div key={indx} className="border rounded-lg overflow-hidden shadow-lg">
                             <img src={guide.profilePicture} alt={guide.name} className="w-full h-52 object-cover" />
                             <div className="p-3 flex justify-between items-center">
                                 <h3 className="text-xl font-bold">{guide.name}</h3>
@@ -102,43 +146,42 @@ const PackageDetailsPage = () => {
             {/* Booking Form Section */}
             <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Booking Form</h2>
-                <form onSubmit={(e) => e.preventDefault()}>
+                <form onSubmit={handleBooking}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label className="block mb-2">Name of the package</label>
-                            <input type="text" value={packageDetails?.name} readOnly className="border p-2 w-full rounded" />
+                            <input name='packageName' type="text" value={packageDetails?.tripTitle} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
                             <label className="block mb-2">Tourist Name</label>
-                            <input type="text" value={user?.name || ''} readOnly className="border p-2 w-full rounded" />
+                            <input name='touristName' type="text" value={user?.displayName || ''} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
                             <label className="block mb-2">Tourist Email</label>
-                            <input type="email" value={user?.email || ''} readOnly className="border p-2 w-full rounded" />
+                            <input name='touristEmail' type="email" value={user?.email || ''} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
                             <label className="block mb-2">Tourist Image URL</label>
-                            <input type="text" value={user?.image || ''} readOnly className="border p-2 w-full rounded" />
+                            <input name='touristImage' type="text" value={user?.photoURL || ''} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
                             <label className="block mb-2">Price</label>
-                            <input type="text" value={packageDetails?.price} readOnly className="border p-2 w-full rounded" />
+                            <input name='price' type="text" value={packageDetails?.price} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
                             <label className="block mb-2">Tour Date</label>
-                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className="border p-2 w-full rounded" />
+                            <DatePicker selected={date} onChange={(d) => setDate(d)} className="border p-2 w-full rounded" />
                         </div>
                         <div>
                             <label className="block mb-2">Tour Guide Name</label>
-                            <select value={selectedGuide} onChange={(e) => setSelectedGuide(e.target.value)} className="border p-2 w-full rounded">
-                                {tourGuides.map((guide) => (
-                                    <option key={guide.id} value={guide.name}>{guide.name}</option>
+                            <select name='tourGuideName' value={selectedGuide} onChange={(e) => setSelectedGuide(e.target.value)} className="border p-2 w-full rounded">
+                                {tourGuides.map((guide, indx) => (
+                                    <option key={indx} value={guide.name}>{guide.name}</option>
                                 ))}
                             </select>
                         </div>
                     </div>
                     <button
-                        onClick={handleBooking}
                         className="mt-4 px-4 py-2 bg-green-500 text-white rounded"
                     >
                         Book Now
