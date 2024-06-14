@@ -7,6 +7,9 @@ import Register from "../pages/Authentication/Register";
 import DashBoard from "../Root/DashBoard";
 import PackageDetailsPage from "../pages/PackageDetails/PackageDetailsPage";
 import TourGuideProfile from "../pages/TourGuide/TourGuideProfile";
+import Profile from "../pages/Dashboard/Common/Profile";
+import MyBookings from "../pages/Dashboard/Tourist/MyBookings";
+import MyWishlist from "../pages/Dashboard/Tourist/MyWishlist";
 
 export const router = createBrowserRouter([
     {
@@ -32,6 +35,21 @@ export const router = createBrowserRouter([
     { path: '/register', element: <Register /> },
     {
         path: '/dashboard',
-        element: <DashBoard />
+        element: <DashBoard />,
+        children: [
+            {
+                index: true,
+                element: <Profile />
+            },
+            // 
+            {
+                path: 'my-bookings',
+                element: <MyBookings />
+            },
+            {
+                path: 'my-wishlist',
+                element: <MyWishlist />
+            }
+        ]
     }
 ])

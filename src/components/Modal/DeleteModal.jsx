@@ -1,14 +1,15 @@
-import PropTypes from 'prop-types'
 import {
     Dialog,
     Transition,
     TransitionChild,
-    DialogTitle,
     DialogPanel,
+    DialogTitle,
 } from '@headlessui/react'
 import { Fragment } from 'react'
+import PropTypes from 'prop-types'
 
-const TourGuideModal = ({ closeModal, isOpen, modalHandler }) => {
+const DeleteModal = ({ closeModal, isOpen, handleDelete, id }) => {
+
     return (
         <Transition appear show={isOpen} as={Fragment}>
             <Dialog as='div' className='relative z-10' onClose={closeModal}>
@@ -38,31 +39,33 @@ const TourGuideModal = ({ closeModal, isOpen, modalHandler }) => {
                             <DialogPanel className='w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
                                 <DialogTitle
                                     as='h3'
-                                    className='text-lg font-medium text-center leading-6 text-gray-900'
+                                    className='text-lg font-medium leading-6 text-gray-900'
                                 >
-                                    Become A Tour Guide!
+                                    Are you sure?
                                 </DialogTitle>
                                 <div className='mt-2'>
                                     <p className='text-sm text-gray-500'>
-                                        Please read all the terms & conditions before becoming a
-                                        Tour Guider.
+                                        You cannot undo once it&apos;s done!
                                     </p>
                                 </div>
                                 <hr className='mt-8 ' />
                                 <div className='flex mt-2 justify-around'>
                                     <button
-                                        onClick={modalHandler}
+                                        onClick={() => {
+                                            handleDelete(id)
+                                            closeModal()
+                                        }}
                                         type='button'
-                                        className='inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'
+                                        className='inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
                                     >
-                                        Continue
+                                        Yes
                                     </button>
                                     <button
                                         type='button'
-                                        className='inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
+                                        className='inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'
                                         onClick={closeModal}
                                     >
-                                        Cancel
+                                        No
                                     </button>
                                 </div>
                             </DialogPanel>
@@ -74,10 +77,11 @@ const TourGuideModal = ({ closeModal, isOpen, modalHandler }) => {
     )
 }
 
-TourGuideModal.propTypes = {
+DeleteModal.propTypes = {
     closeModal: PropTypes.func,
     isOpen: PropTypes.bool,
-    modalHandler: PropTypes.func
+    handleDelete: PropTypes.func,
+    id: PropTypes.string,
 }
 
-export default TourGuideModal;
+export default DeleteModal

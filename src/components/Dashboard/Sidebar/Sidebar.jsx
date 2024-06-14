@@ -71,7 +71,7 @@ const Sidebar = () => {
                         {/*  Menu Items */}
                         <nav>
                             {/* Profile Menu */}
-                            <MenuItem icon={FcSettings} label='My Profile' address='profile' />
+                            <MenuItem icon={FcSettings} label='My Profile' address='/dashboard' />
                             {role === 'Tourist' && <TouristMenu />}
                             {role === 'Tour Guide' && <TourGuideMenu />}
                             {role === 'Admin' && <AdminMenu />}
