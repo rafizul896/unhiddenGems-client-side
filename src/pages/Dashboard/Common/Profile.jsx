@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import Loader from "../../../components/Shared/Loader";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
+import AddAGuide from "../TourGuide/AddAGuide";
 
 
 const Profile = () => {
@@ -13,7 +14,7 @@ const Profile = () => {
     }
     
     return (
-        <div className='flex justify-center items-center h-screen'>
+        <div className='flex flex-col gap-10 justify-center items-center min-h-screen'>
             <Helmet>
                 <title>Profile</title>
             </Helmet>
@@ -63,6 +64,9 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            {
+                role === 'Tour Guide' && <AddAGuide/>
+            }
         </div>
     )
 }

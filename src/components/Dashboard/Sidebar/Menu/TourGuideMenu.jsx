@@ -4,7 +4,7 @@ import MenuItem from "./MenuItem";
 const TourGuideMenu = () => {
     return (
         <>
-            <MenuItem icon={MdAssignment} label='My Assigned Tours' address='add-package' />
+            <MenuItem icon={MdAssignment} label='My Assigned Tours' address='assigned-tours' />
         </>
     );
 };
