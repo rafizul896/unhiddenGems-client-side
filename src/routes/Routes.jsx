@@ -11,6 +11,7 @@ import Profile from "../pages/Dashboard/Common/Profile";
 import MyBookings from "../pages/Dashboard/Tourist/MyBookings";
 import MyWishlist from "../pages/Dashboard/Tourist/MyWishlist";
 import MyAssignedTours from "../pages/Dashboard/TourGuide/MyAssignedTours";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 
 export const router = createBrowserRouter([
     {
@@ -55,6 +56,11 @@ export const router = createBrowserRouter([
             {
                 path: 'assigned-tours',
                 element: <MyAssignedTours />
+            },
+            // 
+            {
+                path: 'manage-users',
+                element: <ManageUsers />
             }
         ]
     }
