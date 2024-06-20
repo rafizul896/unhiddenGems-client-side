@@ -14,6 +14,7 @@ import MyAssignedTours from "../pages/Dashboard/TourGuide/MyAssignedTours";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import AddPackage from "../pages/Dashboard/Admin/AddPackage";
 import AllPackages from "../pages/Others/AllPackages";
+import PackagesPage from "../pages/Others/PackagesPage";
 
 export const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
             {
                 path: '/allPackages',
                 element: <AllPackages />
+            },
+            {
+                path: '/packages/:type',
+                element: <PackagesPage />
             }
         ]
     },
