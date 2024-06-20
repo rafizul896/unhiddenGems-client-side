@@ -3,6 +3,7 @@ import TourismGuideSection from "./TourismGuideSection";
 import Banner from "./Banner/Banner";
 import SectionTitle from "../../components/Shared/SectionTitle";
 import TourTypeSection from "./TourTypeSection";
+import TouristStorySection from "./TouristStorySection";
 
 const Home = () => {
     return (
@@ -12,12 +13,13 @@ const Home = () => {
             </Helmet>
             {/* Home */}
             <Banner />
-            <div>
+            <div className="py-5">
                 <SectionTitle heading={'Tourist Guide'} />
                 <TourismGuideSection />
-                <div className="py-5">
+                <div>
                     <TourTypeSection />
                 </div>
+                <TouristStorySection />
             </div>
         </div>
     );
