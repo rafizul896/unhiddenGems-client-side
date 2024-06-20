@@ -12,6 +12,8 @@ import MyBookings from "../pages/Dashboard/Tourist/MyBookings";
 import MyWishlist from "../pages/Dashboard/Tourist/MyWishlist";
 import MyAssignedTours from "../pages/Dashboard/TourGuide/MyAssignedTours";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import AddPackage from "../pages/Dashboard/Admin/AddPackage";
+import AllPackages from "../pages/Others/AllPackages";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +32,10 @@ export const router = createBrowserRouter([
             {
                 path: '/tourGuideProfile/:id',
                 element: <TourGuideProfile />
+            },
+            {
+                path: '/allPackages',
+                element: <AllPackages />
             }
         ]
     },
@@ -61,6 +67,10 @@ export const router = createBrowserRouter([
             {
                 path: 'manage-users',
                 element: <ManageUsers />
+            },
+            {
+                path: 'add-package',
+                element: <AddPackage />
             }
         ]
     }

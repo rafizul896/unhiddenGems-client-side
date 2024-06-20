@@ -40,7 +40,7 @@ const TourismGuideSection = () => {
                                 packages.map(item => <PackageCard key={item._id} item={item} />)
                             }
                         </div>
-                        <Link to='/' className='flex justify-center items-center'><button className="mt-4 px-4 py-2 bg-green-500 text-white rounded">All Packages</button></Link>
+                        <Link to='/allPackages' className='flex justify-center items-center'><button className="mt-4 px-4 py-2 bg-green-500 text-white rounded">All Packages</button></Link>
                     </div>
                 </TabPanel>
                 {/* Meet Our Tour Guides */}
