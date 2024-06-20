@@ -15,6 +15,7 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import AddPackage from "../pages/Dashboard/Admin/AddPackage";
 import AllPackages from "../pages/Others/AllPackages";
 import PackagesPage from "../pages/Others/PackagesPage";
+import StoryDetails from "../pages/Home/StoryDetails";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path: '/packages/:type',
                 element: <PackagesPage />
+            },
+            {
+                path: '/stories/:id',
+                element: <StoryDetails />
             }
         ]
     },

@@ -18,7 +18,7 @@ const TouristStorySection = () => {
             <SectionTitle heading={'Tourist Stories'} />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
                 {stories.map((story) => (
-                    <Link to={'/'} key={story?._id}>
+                    <Link to={`/stories/${story._id}`} key={story?._id}>
                         <div
                             className="story-card bg-white p-4 rounded shadow cursor-pointer"
                         >
