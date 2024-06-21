@@ -3,16 +3,38 @@ import Select from 'react-select';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import Pagination from '../../../components/Pagination/Pagination';
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState('');
+    // pagination
+    const [count, setCount] = useState('')
+    const [itemsPerPage, setItemsPerPage] = useState(2);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const { data: users, refetch } = useQuery({
-        queryKey: ['allusers', search, filter],
+    // handle pagination button
+    const handlePaginationButton = (value) => {
+        setCurrentPage(value)
+    }
+
+    // count total
+    useQuery({
+        queryKey: ['total-users', search, filter],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/users?search=${search}&filter=${filter}`);
+            const { data } = await axiosSecure.get(`/users-total?search=${search}&filter=${filter}`);
+            return setCount(parseInt(data.count));
+        }
+    })
+
+    const pages = [...Array(Math.ceil(count / itemsPerPage)).keys()].map(e => e + 1)
+
+    // 
+    const { data: users, refetch } = useQuery({
+        queryKey: ['allusers', search, filter, itemsPerPage, currentPage],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/users?page=${currentPage}&size=${itemsPerPage}&search=${search}&filter=${filter}`);
             return data;
         }
     })
@@ -111,6 +133,7 @@ const ManageUsers = () => {
                     ))}
                 </tbody>
             </table>
+            <Pagination count={count} handlePaginationButton={handlePaginationButton} currentPage={currentPage} setItemsPerPage={setItemsPerPage} itemsPerPage={itemsPerPage} pages={pages} />
         </div>
     );
 };

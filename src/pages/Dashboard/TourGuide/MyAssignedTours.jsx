@@ -4,20 +4,42 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import AssignedDataRow from "../../../components/Dashboard/TableRows/AssignedDataRow";
+import SectionTitle from "../../../components/Shared/SectionTitle";
+import { useState } from "react";
+import Pagination from "../../../components/Pagination/Pagination";
 
 
 const MyAssignedTours = () => {
   const axiosSecure = useAxiosSecure();
   const { user, loading } = useAuth();
+  // pagination
+  const [count, setCount] = useState('')
+  const [itemsPerPage, setItemsPerPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // handle pagination button
+  const handlePaginationButton = (value) => {
+    setCurrentPage(value)
+  }
 
   const { data: assignedTours = [], refetch, isLoading } = useQuery({
-    queryKey: ['assignedTours'],
+    queryKey: ['assignedTours',itemsPerPage,currentPage],
     enabled: !!user?.email,
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/assigned-tours/${user?.displayName}`);
+      const { data } = await axiosSecure.get(`/assigned-tours/${user?.displayName}?page=${currentPage}&size=${itemsPerPage}`);
       return data;
     }
   })
+
+  // count total
+  useQuery({
+    queryKey: ['assignedToursTotal'],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/assigned-tours-total/${user?.displayName}`);
+      return setCount(parseInt(data.count));
+    }
+  })
+  const pages = [...Array(Math.ceil(count / itemsPerPage)).keys()].map(e => e + 1)
 
   if (isLoading || loading) return <Loader />
 
@@ -27,8 +49,9 @@ const MyAssignedTours = () => {
         <title>My Assigned Tours</title>
       </Helmet>
 
-      <div className='container mx-auto px-4 sm:px-8'>
-        <div className='py-8'>
+      <div>
+        <SectionTitle heading={'My Assigned Tours'} />
+        <div>
           <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
               <table className='min-w-full leading-normal'>
@@ -82,6 +105,7 @@ const MyAssignedTours = () => {
             </div>
           </div>
         </div>
+        <Pagination count={count} handlePaginationButton={handlePaginationButton} currentPage={currentPage} setItemsPerPage={setItemsPerPage} itemsPerPage={itemsPerPage} pages={pages} />
       </div>
     </>
   )

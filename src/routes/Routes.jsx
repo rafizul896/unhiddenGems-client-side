@@ -19,6 +19,7 @@ import StoryDetails from "../pages/Home/StoryDetails";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import TourGuideRoute from "./TourGuideRoute";
+import AllStories from "../pages/Dashboard/Tourist/AllStories";
 
 export const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
             {
                 path: '/stories/:id',
                 element: <StoryDetails />
+            },
+            {
+                path: 'allStories',
+                element: <AllStories />
             }
         ]
     },
@@ -64,7 +69,7 @@ export const router = createBrowserRouter([
                 index: true,
                 element: <Profile />
             },
-            // 
+            // Normal user/ Tourist
             {
                 path: 'my-bookings',
                 element: <MyBookings />
@@ -73,7 +78,7 @@ export const router = createBrowserRouter([
                 path: 'my-wishlist',
                 element: <MyWishlist />
             },
-            //
+            //TourGuideRoute
             {
                 path: 'assigned-tours',
                 element: <TourGuideRoute>

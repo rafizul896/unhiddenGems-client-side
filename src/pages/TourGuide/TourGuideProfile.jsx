@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { axiosCommon } from '../../hooks/useAxiosCommon';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Loader from '../../components/Shared/Loader';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -19,6 +19,7 @@ const TourGuideProfile = () => {
     const { user } = useAuth();
     const [rating, setRating] = useState(0);
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate('')
 
     const { data: guide, isLoading } = useQuery({
         queryKey: ['guide'],
@@ -51,8 +52,10 @@ const TourGuideProfile = () => {
         e.preventDefault();
         const comment = e.target.comment.value
         if (!user) {
-            toast.warning("You must be logged in to submit a review.");
-            return;
+            return (
+                toast.warning("You must be logged in to submit a review."),
+                navigate('/login')
+            )
         }
 
         const newReview = {

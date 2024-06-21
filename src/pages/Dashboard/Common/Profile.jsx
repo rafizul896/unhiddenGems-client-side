@@ -3,16 +3,17 @@ import Loader from "../../../components/Shared/Loader";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
 import AddAGuide from "../TourGuide/AddAGuide";
+import AddAStory from "../Tourist/AddAStory";
 
 
 const Profile = () => {
-    const { user,loading } = useAuth();
-    const {role,isLoading} = useRole();
+    const { user, loading } = useAuth();
+    const { role, isLoading } = useRole();
 
-    if(loading || isLoading){
-        return <Loader/>
+    if (loading || isLoading) {
+        return <Loader />
     }
-    
+
     return (
         <div className='flex flex-col gap-10 justify-center items-center min-h-screen'>
             <Helmet>
@@ -65,7 +66,10 @@ const Profile = () => {
                 </div>
             </div>
             {
-                role === 'Tour Guide' && <AddAGuide/>
+                role === 'Tour Guide' && <AddAGuide />
+            }
+            {
+                role === 'Tourist' && <AddAStory />
             }
         </div>
     )

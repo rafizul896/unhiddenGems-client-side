@@ -4,12 +4,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import useAuth from '../../hooks/useAuth';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { axiosCommon } from '../../hooks/useAxiosCommon';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/Shared/Loader';
 import { SlLocationPin } from 'react-icons/sl';
 import useTourGuides from '../../hooks/useTourGuides';
 import { toast } from 'react-toastify';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const PackageDetailsPage = () => {
     const { tourGuides } = useTourGuides();
@@ -18,6 +19,7 @@ const PackageDetailsPage = () => {
     const axiosSecure = useAxiosSecure();
     const [date, setDate] = useState(new Date());
     const [selectedGuide, setSelectedGuide] = useState('');
+    const navigate = useNavigate();
 
     const { data: packageDetails, isLoading } = useQuery({
         queryKey: ['packageDetails?'],
@@ -37,7 +39,10 @@ const PackageDetailsPage = () => {
                 toast.warning('You have to already booking the package')
             }
             else {
-                toast.success('Booking Success')
+                Swal.fire({
+                    title: "Booking Success!",
+                    icon: "success"
+                });
             }
         },
         onError: e => {
@@ -71,11 +76,26 @@ const PackageDetailsPage = () => {
         }
 
         if (!user) {
-            toast.error("You need to be logged in to book a package.");
-            return;
+            return (
+                toast.error("You need to be logged in to book a package."),
+                navigate('/login')
+                // <Navigate state={location?.pathname} to={'/login'} />
+            )
         }
-
-        await mutateAsync(bookingInfo)
+        Swal.fire({
+            title: "Are you sure?",
+            icon: "warning",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Confirm your Booking",
+            denyButtonText: `My Bookings`
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await mutateAsync(bookingInfo);
+            } else if (result.isDenied) {
+                navigate('/dashboard/my-bookingS')
+            }
+        });
     };
 
     if (isLoading) return <Loader />
@@ -187,6 +207,8 @@ const PackageDetailsPage = () => {
                         Book Now
                     </button>
                 </form>
+                {/* Modal */}
+                {/* <BookingModal refetch={refetch} isOpen={isOpen} closeModal={closeModal} bookingInfo={{ ...room, price: totalPrice, guest: { name: user?.displayName, email: user?.email, image: user?.photoURL } }} /> */}
             </div>
         </div>
     );

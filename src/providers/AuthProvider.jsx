@@ -51,6 +51,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const updateUserProfile = (name, photo) => {
+    setLoading(true)
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
@@ -71,7 +72,7 @@ const AuthProvider = ({ children }) => {
 
   // onAuthStateChange
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, currentUser => {
+    const unSubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
       const loggedUser = { email: currentUser?.email }
       if (currentUser) {
@@ -79,17 +80,18 @@ const AuthProvider = ({ children }) => {
           .then(res => {
             if (res.data.token) {
               localStorage.setItem('token', res.data.token);
+              setLoading(false)
             }
           })
         saveUser(currentUser)
       }
       else {
         localStorage.removeItem('token')
+        setLoading(false)
       }
-      setLoading(false)
     })
     return () => {
-      return unsubscribe()
+      return unSubscribe();
     }
   }, [])
 
@@ -106,12 +108,13 @@ const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>
+      {children}
+    </AuthContext.Provider>
   )
 }
 
 AuthProvider.propTypes = {
-  // Array of children.
   children: PropTypes.array,
 }
 

@@ -1,14 +1,21 @@
-// src/components/TourismGuideSection.jsx
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useTourGuides from '../../hooks/useTourGuides';
-import usePackages from '../../hooks/usePackages';
 import PackageCard from '../../components/card/PackageCard';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { axiosCommon } from '../../hooks/useAxiosCommon';
 
 const TourismGuideSection = () => {
     const { tourGuides } = useTourGuides();
-    const { packages } = usePackages();
+
+    const { data: packages = [] } = useQuery({
+        queryKey: ['packages'],
+        queryFn: async () => {
+            const { data } = await axiosCommon.get(`/packages?size=${6}`)
+            return data;
+        }
+    })
 
     return (
         <div className="container mx-auto">
