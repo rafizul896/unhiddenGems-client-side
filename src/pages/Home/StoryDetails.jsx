@@ -1,11 +1,15 @@
 import { FacebookShareButton, FacebookIcon } from 'react-share';
 import { axiosCommon } from '../../hooks/useAxiosCommon';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../components/Shared/Loader';
+import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const StoryDetails = () => {
     const { id } = useParams();
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     const { data: story, isLoading } = useQuery({
         queryKey: ['story'],
@@ -14,6 +18,15 @@ const StoryDetails = () => {
             return data;
         }
     })
+
+    const handleShare = () => {
+        if (!user) {
+            return (
+                toast.warning('Please Login first'),
+                navigate('/login')
+            )
+        }
+    }
 
     if (isLoading) return <Loader />
 
@@ -34,14 +47,14 @@ const StoryDetails = () => {
                 </div>
             </div>
             <p className="mb-4">{story.storyDescription}</p>
-            <div className="mb-4">
+            <div className="mb-4 flex flex-col-reverse items-center justify-center" onClick={handleShare}>
+                <span className="ml-2 text-sm font-medium">Share on Facebook</span>
                 <FacebookShareButton
-                    url={window.location.href}
+                    url={user && window.location.href}
                     quote={story.storyTitle}
                     hashtag="#touriststory"
                 >
                     <FacebookIcon size={32} round />
-                    <span className="ml-2">Share on Facebook</span>
                 </FacebookShareButton>
             </div>
         </div>

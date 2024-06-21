@@ -27,13 +27,14 @@ const Sidebar = () => {
                 <div>
                     <div className='block cursor-pointer p-4 font-bold'>
                         <Link to='/'>
-                            <img
+                            <h1 className='text-2xl font-bold'>Tourist Guide</h1>
+                            {/* <img
                                 // className='hidden md:block'
                                 src='https://i.ibb.co/4ZXzmq5/logo.png'
                                 alt='logo'
                                 width='100'
                                 height='100'
-                            />
+                            /> */}
                         </Link>
                     </div>
                 </div>
@@ -55,13 +56,14 @@ const Sidebar = () => {
                     <div>
                         <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
                             <Link to='/'>
-                                <img
+                                <h1 className='text-2xl font-bold'>Tourist Guide</h1>
+                                {/* <img
                                     // className='hidden md:block'
                                     src='https://i.ibb.co/4ZXzmq5/logo.png'
                                     alt='logo'
                                     width='100'
                                     height='100'
-                                />
+                                /> */}
                             </Link>
                         </div>
                     </div>

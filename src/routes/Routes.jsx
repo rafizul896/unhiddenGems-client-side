@@ -16,6 +16,9 @@ import AddPackage from "../pages/Dashboard/Admin/AddPackage";
 import AllPackages from "../pages/Others/AllPackages";
 import PackagesPage from "../pages/Others/PackagesPage";
 import StoryDetails from "../pages/Home/StoryDetails";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import TourGuideRoute from "./TourGuideRoute";
 
 export const router = createBrowserRouter([
     {
@@ -53,7 +56,9 @@ export const router = createBrowserRouter([
     { path: '/register', element: <Register /> },
     {
         path: '/dashboard',
-        element: <DashBoard />,
+        element: <PrivateRoute>
+            <DashBoard />
+        </PrivateRoute>,
         children: [
             {
                 index: true,
@@ -71,16 +76,22 @@ export const router = createBrowserRouter([
             //
             {
                 path: 'assigned-tours',
-                element: <MyAssignedTours />
+                element: <TourGuideRoute>
+                    <MyAssignedTours />
+                </TourGuideRoute>
             },
-            // 
+            // Admin Routes
             {
                 path: 'manage-users',
-                element: <ManageUsers />
+                element: <AdminRoute>
+                    <ManageUsers />
+                </AdminRoute>
             },
             {
                 path: 'add-package',
-                element: <AddPackage />
+                element: <AdminRoute>
+                    <AddPackage />
+                </AdminRoute>
             }
         ]
     }
