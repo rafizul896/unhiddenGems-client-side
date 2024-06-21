@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 
 const Pagination = ({ currentPage, handlePaginationButton, pages, setItemsPerPage, itemsPerPage, count }) => {
-
     return (
         <div className='flex justify-center mt-12'>
             <div></div>
