@@ -82,7 +82,7 @@ const Login = () => {
                 id='email'
                 required
                 placeholder='Enter Your Email Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#00aa6c] bg-gray-200 text-gray-900'
                 data-temp-mail-org='0'
               />
             </div>
@@ -99,7 +99,7 @@ const Login = () => {
                 id='password'
                 required
                 placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#00aa6c] bg-gray-200 text-gray-900'
               />
             </div>
           </div>
@@ -107,7 +107,7 @@ const Login = () => {
           <div>
             <button
               type='submit'
-              className='bg-rose-500 w-full rounded-md py-3 text-white'
+              className='bg-[#00aa6c] w-full rounded-md py-3 text-white'
             >
               {loading ? <TbFidgetSpinner className='m-auto text-xl animate-spin' /> : "Continue"}
             </button>
@@ -135,7 +135,7 @@ const Login = () => {
             to='/register'
             className='hover:underline hover:text-rose-500 text-gray-600'
           >
-            Sign up
+          Register
           </Link>
           .
         </p>

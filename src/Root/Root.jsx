@@ -4,7 +4,7 @@ import Navbar from "../components/Shared/Navbar";
 
 const Root = () => {
     return (
-        <div>
+        <div className="font-poppins">
             <div className="w-[90%] md:w-[90%] lg:w-[80%] mx-auto max-w-[1440px]">
                 <Navbar />
                 <div className="min-h-[calc(100vh-324px)]">

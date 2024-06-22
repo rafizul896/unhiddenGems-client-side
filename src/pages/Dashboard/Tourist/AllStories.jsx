@@ -17,7 +17,7 @@ const AllStories = () => {
     if (isLoading) return <Loader />
 
     return (
-        <div className="container mx-auto p-4">
+        <div className='pb-10'>
             <SectionTitle heading={'All Stories'} />
             <div className="mb-4">
                 <div className="flex items-center border-b border-gray-300 py-2">

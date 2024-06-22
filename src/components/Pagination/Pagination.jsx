@@ -37,7 +37,7 @@ const Pagination = ({ currentPage, handlePaginationButton, pages, setItemsPerPag
                 </button>
             ))}
             <select onChange={(e) => setItemsPerPage(e.target.value)} className="border border-[#0d2d5e] rounded-md" value={itemsPerPage}>
-                <option value="5">5</option>
+                <option value="2">2</option>
                 <option value="10">10</option>
                 <option value="15">15</option>
                 <option value="20">20</option>

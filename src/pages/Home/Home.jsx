@@ -16,7 +16,7 @@ const Home = () => {
             <div className="py-5">
                 <SectionTitle heading={'Tourism and Travel Guide Section'} />
                 <TourismGuideSection />
-                <div>
+                <div className="pt-10">
                     <TourTypeSection />
                 </div>
                 <TouristStorySection />

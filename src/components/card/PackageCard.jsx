@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import useAxiosCommon from '../../hooks/useAxiosCommon';
 import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
+import { FiDollarSign } from 'react-icons/fi';
 
 const PackageCard = ({ item }) => {
     const { images, price, tripTitle, tourType } = item;
@@ -52,7 +53,7 @@ const PackageCard = ({ item }) => {
     return (
         <div className="border rounded-lg overflow-hidden shadow-lg">
             <div className='relative'>
-                <img src={images[0]} className="w-ful h-48 object-cover" />
+                <img src={images[0]} className="w-full h-48 object-cover" />
                 <div onClick={() => handleWishlist(item)} className='text-2xl cursor-pointer absolute top-2 right-2 bg-white p-1.5 rounded-full'>
                     {
                         love ?
@@ -61,15 +62,19 @@ const PackageCard = ({ item }) => {
                     }
                 </div>
             </div>
-            <div className="p-2">
+            <div className="p-4 space-y-2">
                 <div className="flex justify-between items-center">
                     <h3 className="text-lg font-bold">{tripTitle}</h3>
-                    {/* <button className="text-red-500">❤️</button> */}
                 </div>
-                <p>Tour Type: {tourType}</p>
-                <p>Price: {price}</p>
+                <div className='flex justify-between'>
+                    <p><span className='font-semibold'>Tour Type:</span> {tourType}</p>
+                    <div className='flex items-center gap-1'>
+                        <FiDollarSign />
+                        <p> {price}</p>
+                    </div>
+                </div>
                 <Link to={`/packageDetails/${item._id}`}>
-                    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded">View Package</button>
+                    <button className="mt-2 px-4 py-2 bg-[#00aa6c] hover:bg-[#008768] text-white w-full rounded-full">View Package</button>
                 </Link>
             </div>
         </div>

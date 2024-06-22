@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loader from '../../components/Shared/Loader';
 import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const StoryDetails = () => {
     const { id } = useParams();
@@ -36,6 +37,9 @@ const StoryDetails = () => {
 
     return (
         <div className="container mx-auto md:p-4">
+            <Helmet>
+                <title>Story Details || Unhidden Gems</title>
+            </Helmet>
             <h2 className="text-3xl font-medium mb-4 text-center">{story.storyTitle}</h2>
             <img src={story.storyImage} alt={story.storyTitle} className="w-full  object-cover mb-4" />
             <div className="flex items-center justify-center py-3">

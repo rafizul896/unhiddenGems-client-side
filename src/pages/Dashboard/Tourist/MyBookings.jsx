@@ -16,7 +16,7 @@ const MyBookings = () => {
   const { user, loading } = useAuth();
   // pagination
   const [count, setCount] = useState('')
-  const [itemsPerPage, setItemsPerPage] = useState(2);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   // discount
   const [showCongrats, setShowCongrats] = useState(false);
@@ -63,7 +63,7 @@ const MyBookings = () => {
   return (
     <>
       <Helmet>
-        <title>My Bookings</title>
+        <title>My Bookings || Unhidden Gems</title>
       </Helmet>
       <div className=''>
         <SectionTitle heading={'My Bookings'} />

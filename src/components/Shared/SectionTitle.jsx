@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types'; // ES6
 
-const SectionTitle = ({ heading, subHeading }) => {
+const SectionTitle = ({ heading }) => {
     return (
         <div className="flex flex-col justify-center items-center py-5 space-y-2">
-            <p className="text-[#D99904] md:text-xl">{subHeading}</p>
-            <h2 className="text-2xl md:text-4xl font-medium  ">{heading}</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-center ">{heading}</h2>
         </div>
     );
 };

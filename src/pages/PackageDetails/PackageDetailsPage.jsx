@@ -126,7 +126,7 @@ const PackageDetailsPage = () => {
                         packageDetails?.tourPlan.map((plan, indx) => <div key={indx} className="collapse collapse-arrow bg-blue-50 mt-3">
                             <input type="radio" name="my-accordion-2" />
                             <div className="collapse-title md:text-xl font-medium flex gap-4">
-                                <div className='text-sm md:text-lg flex items-center gap-1 bg-[#22e6b5] px-2 md:px-4 py-1 rounded-sm font-semibold'>
+                                <div className='text-sm md:text-lg flex items-center gap-1 bg-[#00aa6c] px-2 md:px-4 py-1 rounded-sm font-semibold'>
                                     <SlLocationPin /> <span>Day {indx + 1}</span>
                                 </div>
                                 {plan.title}
@@ -152,7 +152,7 @@ const PackageDetailsPage = () => {
                                 <h3 className="text-xl font-bold">{guide.name}</h3>
                                 <Link to={`/tourGuideProfile/${guide._id}`}>
                                     <button
-                                        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+                                        className="mt-2 px-4 py-2 bg-[#00aa6c] hover:bg-[#008768] text-white rounded"
                                     >
                                         Details
                                     </button>
@@ -169,31 +169,31 @@ const PackageDetailsPage = () => {
                 <form onSubmit={handleBooking}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label className="block mb-2">Name of the package</label>
+                            <label className="block text-gray-700 text-lg font-medium mb-2">Name of the package</label>
                             <input name='packageName' type="text" value={packageDetails?.tripTitle} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
-                            <label className="block mb-2">Tourist Name</label>
+                            <label className="block text-gray-700 text-lg font-medium mb-2">Tourist Name</label>
                             <input name='touristName' type="text" value={user?.displayName || ''} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
-                            <label className="block mb-2">Tourist Email</label>
+                            <label className="block text-gray-700 text-lg font-medium mb-2">Tourist Email</label>
                             <input name='touristEmail' type="email" value={user?.email || ''} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
-                            <label className="block mb-2">Tourist Image URL</label>
+                            <label className="block text-gray-700 text-lg font-medium mb-2">Tourist Image URL</label>
                             <input name='touristImage' type="text" value={user?.photoURL || ''} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
-                            <label className="block mb-2">Price</label>
+                            <label className="block text-gray-700 text-lg font-medium mb-2">Price</label>
                             <input name='price' type="text" value={packageDetails?.price} readOnly className="border p-2 w-full rounded" />
                         </div>
                         <div>
-                            <label className="block mb-2">Tour Date</label>
+                            <label className="block text-gray-700 text-lg font-medium mb-2">Tour Date</label>
                             <DatePicker selected={date} onChange={(d) => setDate(d)} className="border p-2 w-full rounded" />
                         </div>
                         <div>
-                            <label className="block mb-2">Tour Guide Name</label>
+                            <label className="block text-gray-700 text-lg font-medium mb-2">Tour Guide Name</label>
                             <select name='tourGuideName' value={selectedGuide} onChange={(e) => setSelectedGuide(e.target.value)} className="border p-2 w-full rounded">
                                 {tourGuides.map((guide, indx) => (
                                     <option key={indx} value={guide.name}>{guide.name}</option>
@@ -201,14 +201,14 @@ const PackageDetailsPage = () => {
                             </select>
                         </div>
                     </div>
-                    <button
-                        className="mt-4 px-4 py-2 bg-green-500 text-white rounded"
-                    >
-                        Book Now
-                    </button>
+                    <div className='flex justify-end lg:justify-start'>
+                        <button
+                            className="mt-4 px-4 py-2 bg-green-500 text-white rounded"
+                        >
+                            Book Now
+                        </button>
+                    </div>
                 </form>
-                {/* Modal */}
-                {/* <BookingModal refetch={refetch} isOpen={isOpen} closeModal={closeModal} bookingInfo={{ ...room, price: totalPrice, guest: { name: user?.displayName, email: user?.email, image: user?.photoURL } }} /> */}
             </div>
         </div>
     );

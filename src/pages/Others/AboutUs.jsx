@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet";
 import { GiCheckMark } from "react-icons/gi";
 
 const AboutUs = () => {
     return (
         <div className="text-gray-900 pb-5">
+            <Helmet>
+                <title>About Us || Unhidden Gems</title>
+            </Helmet>
             <section className="mt-5">
                 <p className="text-lg mt-5">
                     <span className="font-bold">About Us : </span>
@@ -42,7 +46,7 @@ const AboutUs = () => {
                     <div>
                         <h1 className="font-semibold text-lg">Rafizul Islam</h1>
                         <p>
-                       Rafizul Islam, our visionary CEO and Founder, has been the driving force behind Adventure Travel Co. since its inception in 2010. With over 20 years of experience in the travel industry, John is passionate about creating unique and memorable travel experiences for our clients. Under his leadership, the company has grown from a small startup to a leading travel agency. Rafizul dedication to excellence and innovation ensures that Adventure Travel Co. continues to inspire travelers worldwide.
+                            Rafizul Islam, our visionary CEO and Founder, has been the driving force behind Adventure Travel Co. since its inception in 2010. With over 20 years of experience in the travel industry, John is passionate about creating unique and memorable travel experiences for our clients. Under his leadership, the company has grown from a small startup to a leading travel agency. Rafizul dedication to excellence and innovation ensures that Adventure Travel Co. continues to inspire travelers worldwide.
                         </p>
                     </div>
                 </div>

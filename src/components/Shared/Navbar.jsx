@@ -9,11 +9,11 @@ const Navbar = () => {
     const [open, setOpen] = useState(false);
 
     const links = <>
-        <NavLink to="/" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Home</NavLink>
-        <NavLink to="/community" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Community</NavLink>
-        <NavLink to="/blogs" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Blogs</NavLink>
-        <NavLink to="/aboutUs" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>About Us</NavLink>
-        <NavLink to="/ContactUs" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Contact Us</NavLink>
+        <NavLink to="/" className={({ isActive }) => isActive ? "text-green-500 text-base" : "text-base"}>Home</NavLink>
+        <NavLink to="/community" className={({ isActive }) => isActive ? "text-green-500 text-base" : "text-base"}>Community</NavLink>
+        <NavLink to="/blogs" className={({ isActive }) => isActive ? "text-green-500 text-base" : "text-base"}>Blogs</NavLink>
+        <NavLink to="/aboutUs" className={({ isActive }) => isActive ? "text-green-500 text-base" : "text-base"}>About Us</NavLink>
+        <NavLink to="/ContactUs" className={({ isActive }) => isActive ? "text-green-500 text-base" : "text-base"}>Contact Us</NavLink>
     </>
     const handleLogOut = () => {
         logOut()
@@ -33,7 +33,7 @@ const Navbar = () => {
                 </div>
                 <div className='flex gap-2 lg:gap-0 items-center'>
                     <img className='w-auto h-7' src='' alt='' />
-                    <Link to="/" className='font-semibold md:font-bold text-2xl md:text-4xl '>Unhidden Gems</Link>
+                    <Link to="/" className='font-bold text-2xl md:text-4xl '>Unhidden Gems</Link>
                 </div>
             </div>
             <div className='flex-none flex items-center gap-1 md:gap-0'>
