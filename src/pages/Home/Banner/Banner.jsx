@@ -42,7 +42,7 @@ const Banner = () => {
                             <div className='flex items-center justify-center w-full h-full bg-gray-900/50 rounded-lg'>
                                 <div className='text-center space-y-3'>
                                     <h1 className='text-2xl md:text-3xl font-bold md:font-semibold text-white lg:text-4xl'>
-                                    Do more with Viator
+                                        Do more with Unhidden Gems
                                     </h1>
                                     <p className='text-white w-[89%] mx-auto'>One site, 300,000+ travel experiences youll remember.</p>
                                     <br />

@@ -81,7 +81,7 @@ const ManageUsers = () => {
     ];
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="">
             <h2 className="text-2xl font-bold mb-4 text-center">Manage Users</h2>
             <div className="flex mb-4">
                 <input
@@ -97,42 +97,43 @@ const ManageUsers = () => {
                     className="w-full"
                 />
             </div>
-
-            <table className="min-w-full bg-white mb-4">
-                <thead>
-                    <tr>
-                        <th className="py-2 px-4 border-b">Name</th>
-                        <th className="py-2 px-4 border-b">Email</th>
-                        <th className="py-2 px-4 border-b">Role</th>
-                        <th className="py-2 px-4 border-b">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users?.map(user => (
-                        <tr key={user._id}>
-                            <td className="py-2 px-4 border-b">{user.name}</td>
-                            <td className="py-2 px-4 border-b">{user.email}</td>
-                            <td className="py-2 px-4 border-b">{user.role}</td>
-                            <td className="py-2 px-4 border-b">
-                                <button
-                                    onClick={() => handleRoleChange(user._id, 'Admin')}
-                                    className={`bg-blue-500 text-white px-4 py-2 rounded mr-2 cursor-pointer ${user.role == 'Admin' && 'cursor-not-allowed'}`}
-                                    disabled={user.role === 'Admin'}
-                                >
-                                    Make Admin
-                                </button>
-                                <button
-                                    onClick={() => handleRoleChange(user._id, 'Tour Guide')}
-                                    className={`bg-green-500 text-white px-4 py-2 rounded cursor-pointer ${user.role == 'Tour Guide' && 'cursor-not-allowed'}`}
-                                    disabled={user.role == 'Tour Guide'}
-                                >
-                                    Make Tour Guide
-                                </button>
-                            </td>
+            <div className='overflow-x-auto'>
+                <table className="min-w-full bg-white mb-4 overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th className="py-2 px-4 border-b">Name</th>
+                            <th className="py-2 px-4 border-b">Email</th>
+                            <th className="py-2 px-4 border-b">Role</th>
+                            <th className="py-2 px-4 border-b">Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {users?.map(user => (
+                            <tr key={user._id}>
+                                <td className="py-2 px-4 border-b">{user.name}</td>
+                                <td className="py-2 px-4 border-b">{user.email}</td>
+                                <td className="py-2 px-4 border-b">{user.role}</td>
+                                <td className="py-2 px-4 border-b">
+                                    <button
+                                        onClick={() => handleRoleChange(user._id, 'Admin')}
+                                        className={`bg-blue-500 text-white px-4 py-2 rounded mr-2 cursor-pointer ${user.role == 'Admin' && 'cursor-not-allowed'}`}
+                                        disabled={user.role === 'Admin'}
+                                    >
+                                        Make Admin
+                                    </button>
+                                    <button
+                                        onClick={() => handleRoleChange(user._id, 'Tour Guide')}
+                                        className={`bg-green-500 text-white px-4 py-2 rounded cursor-pointer ${user.role == 'Tour Guide' && 'cursor-not-allowed'}`}
+                                        disabled={user.role == 'Tour Guide'}
+                                    >
+                                        Make Tour Guide
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <Pagination count={count} handlePaginationButton={handlePaginationButton} currentPage={currentPage} setItemsPerPage={setItemsPerPage} itemsPerPage={itemsPerPage} pages={pages} />
         </div>
     );
