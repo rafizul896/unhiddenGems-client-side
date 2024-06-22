@@ -20,6 +20,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import TourGuideRoute from "./TourGuideRoute";
 import AllStories from "../pages/Dashboard/Tourist/AllStories";
+import AboutUs from "../pages/Others/AboutUs";
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
             {
                 path: 'allStories',
                 element: <AllStories />
+            },
+            {
+                path: 'aboutUs',
+                element: <AboutUs />
             }
         ]
     },

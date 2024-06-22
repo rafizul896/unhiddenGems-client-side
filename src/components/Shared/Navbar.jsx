@@ -10,10 +10,10 @@ const Navbar = () => {
 
     const links = <>
         <NavLink to="/" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Home</NavLink>
-        <NavLink to="/allJobs" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Community</NavLink>
-        <NavLink to="/blog" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Blogs</NavLink>
-        <NavLink to="/blog" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>About Us</NavLink>
-        <NavLink to="/blog" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Contact Us</NavLink>
+        <NavLink to="/community" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Community</NavLink>
+        <NavLink to="/blogs" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Blogs</NavLink>
+        <NavLink to="/aboutUs" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>About Us</NavLink>
+        <NavLink to="/ContactUs" className={({ isActive }) => isActive ? "text-[#2557a7] text-base" : "text-base"}>Contact Us</NavLink>
     </>
     const handleLogOut = () => {
         logOut()

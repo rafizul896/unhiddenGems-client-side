@@ -14,7 +14,7 @@ const Home = () => {
             {/* Home */}
             <Banner />
             <div className="py-5">
-                <SectionTitle heading={'Tourist Guide'} />
+                <SectionTitle heading={'Tourism and Travel Guide Section'} />
                 <TourismGuideSection />
                 <div>
                     <TourTypeSection />
