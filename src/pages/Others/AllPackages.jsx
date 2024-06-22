@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Loader from "../../components/Shared/Loader";
 import usePackages from "../../hooks/usePackages";
+import { FaSearch } from "react-icons/fa";
+import SectionTitle from "../../components/Shared/SectionTitle";
 
 const AllPackages = () => {
     const { packages, isLoading } = usePackages()
@@ -12,7 +14,7 @@ const AllPackages = () => {
             <Helmet>
                 <title>All Packages</title>
             </Helmet>
-            <div>
+            {/* <div>
                 <section className='py-7'>
                     <div className='flex flex-col'>
                         <div className='-my-2 overflow-x-auto'>
@@ -73,6 +75,42 @@ const AllPackages = () => {
                         </div>
                     </div>
                 </section>
+            </div> */}
+            <div className="container mx-auto p-4">
+                <SectionTitle heading={'All Packages'} />
+                {/* <h1 className="text-3xl font-bold mb-4">All Packages</h1> */}
+                <div className="mb-4">
+                    <div className="flex items-center border-b border-gray-300 py-2">
+                        <FaSearch className="mr-2 text-gray-500" />
+                        <input
+                            type="text"
+                            placeholder="Search by title or type..."
+                            className="w-full px-2 py-1 outline-none"
+                        />
+                    </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {packages.map((pkg, index) => (
+                        <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src={pkg.images[0]} alt={pkg.tripTitle} className="w-full h-48 object-cover" />
+                            <div className="p-4">
+                                <h2 className="text-xl font-bold">{pkg.tripTitle}</h2>
+                                <p className="text-gray-600">{pkg.aboutTour.substring(0, 100)}...</p>
+                                <div className="mt-2">
+                                    <span className="text-gray-800 font-medium">Price: </span>
+                                    <span className="text-gray-800">{pkg.price}</span>
+                                </div>
+                                <div className="mt-2">
+                                    <span className="text-gray-800 font-medium">Tour Type: </span>
+                                    <span className="text-gray-800">{pkg.tourType}</span>
+                                </div>
+                                <Link to={`/packageDetails/${pkg._id}`}>
+                                    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded">View Package</button>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

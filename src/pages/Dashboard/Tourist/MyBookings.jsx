@@ -5,9 +5,11 @@ import BookingDataRow from "../../../components/Dashboard/TableRows/BookingDataR
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import SectionTitle from "../../../components/Shared/SectionTitle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "../../../components/Pagination/Pagination";
-
+import Confetti from 'react-confetti';
+import { useWindowSize } from "react-use";
+import { toast } from "react-toastify";
 
 const MyBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,6 +18,9 @@ const MyBookings = () => {
   const [count, setCount] = useState('')
   const [itemsPerPage, setItemsPerPage] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
+  // discount
+  const [showCongrats, setShowCongrats] = useState(false);
+  const { width, height } = useWindowSize();
 
   // handle pagination button
   const handlePaginationButton = (value) => {
@@ -30,6 +35,18 @@ const MyBookings = () => {
       return data;
     }
   })
+
+  const totalBooking = bookings.filter(booking => booking.status === 'Accepted')
+  useEffect(() => {
+    if (totalBooking.length > 3) {
+      setShowCongrats(true)
+    }
+  }, [totalBooking, showCongrats])
+
+  const applyDiscount = () => {
+    toast.success("Discount applied!");
+    setShowCongrats(false)
+  };
 
   // count total
   useQuery({
@@ -48,9 +65,21 @@ const MyBookings = () => {
       <Helmet>
         <title>My Bookings</title>
       </Helmet>
-
       <div className=''>
         <SectionTitle heading={'My Bookings'} />
+        {showCongrats &&
+          <div className="p-4 border border-green-500 bg-green-100 rounded-lg flex flex-col justify-center items-center">
+            <Confetti width={width} height={height} />
+            <h2 className="text-2xl font-bold text-green-700 mb-2">Congratulations!</h2>
+            <p className="text-green-700 mb-4">You have booked more than 3 times. Youre eligible for a discount.</p>
+            <button
+              onClick={applyDiscount}
+              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+            >
+              Apply Discount
+            </button>
+          </div>
+        }
         <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
           <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
             <table className='min-w-full leading-normal'>
