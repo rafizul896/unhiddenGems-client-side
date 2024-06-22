@@ -16,11 +16,11 @@ const fadeInAnimationsVariants = {
 }
 
 const tourTypes = [
-    { type: 'Hiking', icon: '🏔️', route: '/packages/hiking' },
-    { type: 'Sports', icon: '⚽', route: '/packages/sports' },
-    { type: 'Walking', icon: '🚶', route: '/packages/walking' },
-    { type: 'Wildlife', icon: '🐻', route: '/packages/wildlife' },
-    { type: 'Air Rides', icon: '🎈', route: '/packages/air-rides' }
+    { type: 'Hiking', icon: '🏔️', route: '/packages/Hiking' },
+    { type: 'Sports', icon: '⚽', route: '/packages/Sports' },
+    { type: 'Walking', icon: '🚶', route: '/packages/Walking' },
+    { type: 'Wildlife', icon: '🐻', route: '/packages/Wildlife' },
+    { type: 'Air Rides', icon: '🎈', route: '/packages/Air Rides' }
 ];
 
 const TourTypeSection = () => {
@@ -35,9 +35,6 @@ const TourTypeSection = () => {
                             variants={fadeInAnimationsVariants}
                             initial='initial'
                             whileInView="animate"
-                            // viewport={{
-                            //     once: true,
-                            // }}
                             custom={index}
                             className="tour-type-item text-center cursor-pointer p-4">
                             <div className="text-6xl mb-2">{tour.icon}</div>

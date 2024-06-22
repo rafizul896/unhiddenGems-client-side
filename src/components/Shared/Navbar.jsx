@@ -59,10 +59,9 @@ const Navbar = () => {
 
                     <div className='dropdown dropdown-end z-50 ml-2'>
                         <div
-                            data-tip={`${user.displayName}`}
                             tabIndex={0}
                             role='button'
-                            className='avatar tooltip hover:tooltip-open tooltip-left'
+                            className='avatar hover:tooltip-open tooltip-left'
                         >
                             <div className='w-10 rounded-full ' title=''>
                                 <img
@@ -76,6 +75,16 @@ const Navbar = () => {
                             tabIndex={0}
                             className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
                         >
+                            <li>
+                                <p>
+                                    {user.displayName}
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    {user.email}
+                                </p>
+                            </li>
                             <li>
                                 <Link to='/dashboard' className='justify-between'>Dashboard</Link>
                             </li>

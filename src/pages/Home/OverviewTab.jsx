@@ -47,7 +47,7 @@ const OverviewTab = () => {
             <div className="mt-8 text-center">
                 <Link to='/aboutUs'>
                     <button
-                        className="inline-block bg-green-500 text-white px-6 py-2.5 rounded-full md:text-lg font-semibold shadow-lg hover:bg-[#00aa6c] transition duration-300"
+                        className="inline-block bg-green-500 text-white px-6 py-2.5 rounded-full md:text-lg shadow-lg hover:bg-[#00aa6c] transition duration-300"
                     >
                         Learn More About Our Tours
                     </button>
