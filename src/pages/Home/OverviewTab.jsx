@@ -37,7 +37,6 @@ const OverviewTab = () => {
                 <div className="flex flex-col items-center border p-2">
                     <img
                         src="https://i.ibb.co/gMCXhjK/Customer-Satisfaction.png"
-                        alt="Customer Satisfaction"
                         className="w-full h-64 object-cover rounded-lg shadow-md mb-4"
                     />
                     <h2 className="text-2xl font-bold mb-2">Customer Satisfaction</h2>

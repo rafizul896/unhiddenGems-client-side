@@ -4,7 +4,7 @@ const Footer = () => {
             <div className="container flex flex-col justify-between mx-auto space-y-8 lg:flex-row lg:space-y-0 pb-4">
                 <div className="lg:w-1/3">
                     <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 lg:justify-start">
-                        <span className="self-center text-2xl md:text-4xl font-bold">Tourist Guide</span>
+                        <span className="self-center text-2xl md:text-4xl font-bold">Unhidden Gems</span>
                     </a>
                 </div>
                 <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-3">
