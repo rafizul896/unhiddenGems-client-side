@@ -1,6 +1,6 @@
-# Adventure Travel Co.
+# Unhidden Gems
 
-Welcome to Adventure Travel Co., your ultimate destination for unique and unforgettable travel experiences.
+Welcome to Unhidden Gems, your ultimate destination for unique and unforgettable travel experiences.
 
 ## Admin Credentials
 - **Username**: admin12@gmail.com
@@ -28,6 +28,7 @@ Welcome to Adventure Travel Co., your ultimate destination for unique and unforg
 - **Tailwind CSS**: For styling the application.
 - **MongoDB Atlas**: For database management.
 - **React-Router**: For client-side routing.
+- **Node.js**: For server-side.
 
 ## Used npm package name:
  * Swiper slider.
