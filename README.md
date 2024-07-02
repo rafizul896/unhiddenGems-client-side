@@ -30,15 +30,5 @@ Welcome to Unhidden Gems, your ultimate destination for unique and unforgettable
 - **React-Router**: For client-side routing.
 - **Node.js**: For server-side.
 
-## Used npm package name:
- * Swiper slider.
- * REACT SPINNERS.
- * React-share
- * React hot toast.
- * React icons.
- * React tabs.
- * react-datepicker.
- * react-select.
- * react-confetti.
- * Framer Motion
- * Etc.
+- **Installation and Setup**: Includes steps to clone the repository, install dependencies, set up environment variables, and run the development server.
+- **Environment Variables**: Provides instructions to create a `.env` file and set the necessary environment variables for the project.
