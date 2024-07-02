@@ -12,8 +12,11 @@ Welcome to Unhidden Gems, your ultimate destination for unique and unforgettable
 ## Server Site URL
 [Server](https://github.com/rafizul896/unhiddenGems-server-side)
 
-## Features
+## Project Overview
+- **Concept:** Unhidden Gems is a travel platform designed to provide personalized travel experiences worldwide, solving the challenge of finding tailored travel packages and guides.
+- **Problem Solving:** It addresses the need for intuitive, secure, and comprehensive travel planning and booking through a user-friendly interface.
 
+## Features
 1. **Tourism and Travel Guide Section**:  Overview, Packages, and Tour Guides tabs.
 2. **User Wishlist**:Save favorite packages for easy access.
 3. **Package Details Page**: Gallery, tour plan, and booking form.
@@ -26,7 +29,6 @@ Welcome to Unhidden Gems, your ultimate destination for unique and unforgettable
 10. **Secure Booking**: Users must log in to book a package, ensuring secure and personalized service.
 
 ## Technologies Used
-
 - **React**: For building the user interface.
 - **Tailwind CSS**: For styling the application.
 - **MongoDB Atlas**: For database management.
