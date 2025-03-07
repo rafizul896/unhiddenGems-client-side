@@ -34,7 +34,3 @@ Welcome to Unhidden Gems, your ultimate destination for unique and unforgettable
 - **MongoDB Atlas**: For database management.
 - **React-Router**: For client-side routing.
 - **Node.js**: For server-side.
-
-## Installation and Setup
-- Includes steps to clone the repository, install dependencies, set up environment variables, and run the development server.
-- **Environment Variables**: Provides instructions to create a `.env` file and set the necessary environment variables for the project.
