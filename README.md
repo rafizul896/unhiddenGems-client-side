@@ -25,8 +25,7 @@ Welcome to Unhidden Gems, your ultimate destination for unique and unforgettable
 6. **My Profile**:  View and edit user information.
 7. **My Assigned Tours**: Manage assigned tours.
 8. **Admin Management**: Role management, user search/filter.
-9. **Responsive Design**: Seamless across devices.
-10. **Secure Booking**: Users must log in to book a package, ensuring secure and personalized service.
+9. **Secure Booking**: Users must log in to book a package, ensuring secure and personalized service.
 
 ## Technologies Used
 - **React**: For building the user interface.
